@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playbook-P4-M15</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        .dropdown {
+            margin-bottom: 20px;
+        }
+        .dropdown select {
+            font-size: 1em;
+            padding: 5px;
+            margin-left: 10px;
+        }
+        .time-title {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .banner {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .subtitle {
+            font-size: 0.9em;
+            margin-top: 5px;
+            border-top: 1px solid white;
+            padding-top: 5px;
+        }
+        .content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+    </style>
+    <script>
+        function updateActivities() {
+            const selectedTime = document.getElementById('class-time').value;
+            document.getElementById('selected-time').innerText = `Tiempo efectivo de clase: ${selectedTime} minutos`;
+            document.querySelectorAll('.activity').forEach(activity => {
+                const time = activity.dataset.time;
+                activity.style.display = (time === '50' || time === selectedTime) ? 'block' : 'none';
+            });
+        }
+
+        function toggleContent(id) {
+            const content = document.getElementById(id);
+            content.style.display = content.style.display === "none" ? "block" : "none";
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <h1>Playbook-P4-M15</h1>
+    </div>
+
+    <div class="container">
+        <div class="dropdown">
+            <label for="class-time">Tiempo efectivo de Clase:</label>
+            <select id="class-time" onchange="updateActivities()">
+                <option value="50">50 minutos</option>
+                <option value="45">45 minutos</option>
+                <option value="40">40 minutos</option>
+            </select>
+        </div>
+        <h2 id="selected-time" class="time-title">Tiempo efectivo de clase: 50 minutos</h2>
+        
+        <script>
+    function updateActivities() {
+        const selectedTime = document.getElementById('class-time').value;
+        document.getElementById('selected-time').innerText = `Tiempo efectivo de clase: ${selectedTime} minutos`;
+
+        // Mostrar/ocultar actividades según la duración seleccionada
+        document.querySelectorAll('.activity').forEach(activity => {
+            const activityId = activity.getAttribute('id');
+
+            // Lógica para ocultar actividades según la duración
+            if (selectedTime === '45') {
+                if (activityId === 'activity-2') {
+                    activity.style.display = 'none';
+                } else {
+                    activity.style.display = 'block';
+                }
+            } else if (selectedTime === '40') {
+                if (activityId === 'activity-2' || activityId === 'activity-4') {
+                    activity.style.display = 'none';
+                } else {
+                    activity.style.display = 'block';
+                }
+            } else {
+                // Clase de 50 minutos, mostrar todas las actividades
+                activity.style.display = 'block';
+            }
+        });
+    }
+</script>
+
+<!-- Actividad 0 -->
+<div id="activity-0" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('revision_mision')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🔍 Actividad 0: Revisión de Misión ⏰ Tiempo: No especificado</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Verificación inicial del equipo y materiales necesarios para completar la misión.</span>
+        </div>
+    </div>
+    <div id="revision_mision" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1:</strong> Proyectar Diapositiva 1 y verificar que las Magic Tablets estén cargadas y los dispositivos puedan acceder correctamente al editor en línea: makecode.microbit.org.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    No se requiere diálogo para esta fase; es una revisión interna del maestro antes de comenzar la clase con los estudiantes.
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 1 -->
+<div id="activity-1" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('saludo_ritual')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🎉 Actividad 1: Saludo y Ritual Gnius Club ⏰ Tiempo: 2.5 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Bienvenida al grupo, agradecimiento y presentación de los objetivos del día.</span>
+        </div>
+    </div>
+    <div id="saludo_ritual" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (0.5 minutos):</strong> Proyectar Diapositiva 2 ("Gnius Club").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Hola, Genios! 🌟 Bienvenidos a una nueva misión en el Gnius Club. Hoy exploraremos algo increíble: el sensor ultrasónico. ¿Están listos para aprender cómo funciona y cómo podemos usarlo para que el Cutebot detecte y evite obstáculos? ¡Será una aventura genial!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (1 minuto):</strong> Proyectar Diapositiva 3 ("¿Cómo están?") con las posiciones para expresar el estado de ánimo.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Antes de comenzar nuestra misión, quiero saber cómo se sienten hoy. Si están emocionados, hagan una gran sonrisa y levanten los brazos como si acabaran de ganar una carrera. Si necesitan más energía, pónganse las manos en las caderas como superhéroes cargando baterías. ¡Así sabremos cómo está el equipo de genios!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (0.5 minutos):</strong> Proyectar Diapositiva 4 ("Gracias por Asistir") y guiar a los estudiantes en el ritual.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Juntemos nuestras manos como equipo, agradeciendo por esta oportunidad de aprender juntos. ¡Gracias por estar aquí, Genios! Hoy es un día perfecto para descubrir nuevas ideas y divertirnos aprendiendo."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 4 (0.5 minutos):</strong> Proyectar Diapositiva 5 ("Objetivos de la Misión") y leer los objetivos en voz alta.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Hoy tenemos una misión muy especial: aprender a usar el sensor ultrasónico en el Cutebot. Aquí están nuestros objetivos: 
+                    <strong>1.</strong> Entender qué es y cómo funciona el sensor ultrasónico. 
+                    <strong>2.</strong> Programar al Cutebot para detectar y reaccionar ante obstáculos. 
+                    <strong>3.</strong> Practicar con diferentes retos para dominar esta habilidad. ¡Será un día lleno de descubrimientos!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 2 -->
+<div id="activity-2" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('innovacion_dia')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">💡 Actividad 2: Innovación del Día ⏰ Tiempo: 3 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Reflexión sobre la tecnología del sensor ultrasónico aplicada al Tesla Model S.</span>
+        </div>
+    </div>
+    <div id="innovacion_dia" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (0.5 minutos):</strong> Proyectar Diapositiva 6 ("Innovación del Día").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¿Han oído hablar del Tesla Model S? Este vehículo usa tecnología avanzada como sensores ultrasónicos, cámaras y radares para manejarse casi por sí solo. Con funciones como el estacionamiento autónomo y el cambio de carril seguro, este auto demuestra cómo los sensores ultrasónicos pueden mejorar la seguridad y la eficiencia en el transporte. Hoy veremos cómo esta tecnología, que mide distancias y detecta obstáculos, puede ayudarnos a hacer cosas increíbles con nuestro Cutebot."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (1 minuto):</strong> Proyectar Diapositiva 7 y reproducir un video de 1 minuto que ilustre cómo el Tesla utiliza sensores ultrasónicos para maniobras como estacionamiento y cambio de carril.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Miren atentamente cómo el Tesla Model S usa sensores ultrasónicos para detectar objetos y medir distancias en tiempo real! Presten atención a cómo ajusta su velocidad y dirección automáticamente. Después del video, reflexionaremos sobre cómo podríamos usar esta tecnología para nuestro proyecto del Cutebot."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (1.5 minutos):</strong> Proyectar Diapositiva 8 ("Reflexión sobre el Tesla Model S") y guiar a los estudiantes en una breve reflexión sobre el video.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¿Qué les pareció? ¿Cómo creen que esta tecnología del Tesla Model S puede cambiar la forma en que nos movemos en el futuro? ¿Podemos pensar en otras aplicaciones para los sensores ultrasónicos, además de los autos? ¡Compartamos ideas y veamos cómo podemos aplicar este conocimiento a nuestro Cutebot!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 3 -->
+<div id="activity-3" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('brain_gym')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🧠 Actividad 3: Brain Gym ⏰ Tiempo: 8.5 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Exploración del sensor ultrasónico y su programación con el Cutebot.</span>
+        </div>
+    </div>
+    <div id="brain_gym" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (1 minuto):</strong> Proyectar Diapositiva 9 ("Introducción al Sensor Ultrasónico").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios, hoy vamos a profundizar en cómo programar con sensores ultrasónicos! Imaginen que el Cutebot es un auto maniobrando en un estacionamiento con precisión milimétrica. Si lo movemos demasiado rápido, puede perder el control. Por eso, aprenderemos a ajustar cada movimiento con gran detalle, ¡como si estuviéramos en una pista de carreras! Y recuerden, ¡hay un Easter Egg escondido en esta actividad! Presten mucha atención, porque puede estar en cualquier parte."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (2 minutos):</strong> Proyectar Diapositiva 10 ("Cómo Funciona el Sensor Ultrasónico").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Un sensor ultrasónico mide distancias enviando ondas de sonido y escuchando su eco cuando rebotan en un objeto. Este principio se basa en el trabajo de Léon Brillouin, quien en 1917 desarrolló el concepto de detección por eco ultrasónico, que fue perfeccionado con los años. Si sabemos cuánto tiempo tarda el eco en regresar, ¡podemos calcular la distancia! Por ejemplo, si el eco vuelve rápido, significa que el objeto está cerca. Si tarda más, está lejos. ¡Es como magia, pero con ciencia!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (2 minutos):</strong> Proyectar Diapositiva 11 ("Bloque: Leer Distancia del Sensor").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "En MakeCode, tenemos un bloque especial para leer la distancia que mide el sensor ultrasónico. Este bloque nos dice cuántos centímetros hay entre el sensor y el objeto más cercano. Por ejemplo, si lo colocamos frente a una caja, el sensor nos dirá exactamente a qué distancia está. Este bloque es el corazón de nuestra programación para que el Cutebot pueda reaccionar según lo que encuentre a su alrededor. ¡Vamos a probarlo pronto!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 4 (2 minutos):</strong> Proyectar Diapositiva 12 ("Condicional: Si la Distancia es Menor a...").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Ahora viene lo divertido! Para que el Cutebot reaccione automáticamente, usaremos una condición. Esto significa que le diremos: 'Si la distancia al objeto es menor a 15 cm, entonces detente'. Con este bloque, el Cutebot podrá tomar decisiones como si tuviera reflejos. ¡Imaginemos que el Cutebot está manejando y necesita frenar si algo aparece frente a él! Este será el primer paso para que programemos el Challenge Rookie."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 5 (1.5 minutos):</strong> Proyectar Diapositiva 13 ("Resumen del Sensor Ultrasónico").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Gran trabajo hasta ahora, Genios! Aprendimos cómo funciona el sensor ultrasónico, cómo medir distancias con él y cómo usar condiciones para tomar decisiones. Este conocimiento será clave para los retos que vienen. ¿Listos para llevar estas ideas a la práctica?"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 4 -->
+<div id="activity-4" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('brain_vitamin')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🧠 Actividad 4: Brain Vitamin ⏰ Tiempo: 2.5 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Activación energética para preparar mente y cuerpo antes del reto principal.</span>
+        </div>
+    </div>
+    <div id="brain_vitamin" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (0.5 minutos):</strong> Proyectar Diapositiva 14 ("Brain Vitamin - Activación Energética").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios, antes de seguir programando, vamos a movernos un poco para recargar nuestras energías! Necesitamos despertar el cuerpo y la mente para estar listos para el reto que viene. ¿Listos? ¡Vamos a activarnos!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (1 minuto):</strong> Proyectar Diapositiva 15 ("Movimientos de Detección").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Vamos a simular cómo funcionan los sensores ultrasónicos! Estiren los brazos frente a ustedes como si fueran sensores. Cuando yo diga 'eco', den un paso hacia adelante. Si digo 'obstáculo', retrocedan un paso. ¡Veamos qué tan rápido pueden reaccionar como un Cutebot real!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (0.5 minutos):</strong> Proyectar Diapositiva 16 ("Respiración para Concentración").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Ahora que nos hemos movido, tómense un momento para respirar profundamente. Inhalen contando hasta cuatro, retengan el aire por dos segundos, y exhalen lentamente. Este ejercicio es como un 'reset' para la mente, ayudándonos a enfocarnos en lo que viene."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 4 (0.5 minutos):</strong> Sin diapositiva.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios, ahora estamos llenos de energía y listos para concentrarnos! Respiren profundamente una última vez y prepárense para aplicar lo que hemos aprendido en los retos del sensor ultrasónico. ¡A por ello!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 5 -->
+<div id="activity-5" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('team_gnius')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🤝 Actividad 5: Team Gnius ⏰ Tiempo: 3 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Formación de equipos para diseñar soluciones a los desafíos del sensor ultrasónico.</span>
+        </div>
+    </div>
+    <div id="team_gnius" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (0.5 minutos):</strong> Proyectar Diapositiva 17 ("Team Gnius - Formación de Equipos").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios, para el siguiente reto trabajaremos en equipos! Cada equipo será responsable de crear una solución para los desafíos del sensor ultrasónico. Vamos a organizarnos para sacar lo mejor de cada uno. ¿Listos para trabajar juntos como verdaderos ingenieros?"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (0.5 minutos):</strong> Proyectar Diapositiva 18 ("Roles de Equipo").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Cada equipo estará compuesto por tres integrantes: un planificador, que decidirá cómo programar los movimientos; un documentador, que registrará las ideas en el cuaderno del equipo; y un probador, que se encargará de ejecutar y probar la solución en el editor MakeCode. ¡Trabajen juntos para cumplir su misión!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (1 minuto):</strong> Proyectar Diapositiva 19 ("Organización de Equipos").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Tienen un minuto para reunirse con sus equipos, asignar roles y prepararse para el desafío. Recuerden que todos los roles son importantes y el éxito de su equipo dependerá del esfuerzo conjunto. ¡Manos a la obra!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 4 (1 minuto):</strong> Proyectar Diapositiva 20 ("Recolectar Materiales").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Ahora, un representante de cada equipo pasará a recoger las tablets y asegurarse de que estén listas para acceder al editor MakeCode. Tienen un minuto para hacerlo y regresar a sus lugares. ¡Vamos a equiparnos para esta misión!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 6 -->
+<div id="activity-6" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('challenge')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🚀 Actividad 6: Challenge ⏰ Tiempo: 23 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Desafío de programación y resolución de retos con el Cutebot.</span>
+        </div>
+    </div>
+    <div id="challenge" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (1 minuto):</strong> Proyectar Diapositiva 21 ("Challenge de Paper Programming").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios! Es hora de poner en práctica lo que aprendimos sobre sensores ultrasónicos. Su misión será diseñar las secuencias de programación para tres niveles de desafío usando Paper Programming. Tienen que planear cómo el Cutebot detectará y reaccionará a los obstáculos. Recuerden que trabajarán en equipo, y su diseño debe ser claro y ordenado para que después podamos implementarlo en MakeCode."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (1 minuto):</strong> Proyectar Diapositiva 22 ("Detalles del Reto - Rookie, Master, Hacker").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    <strong>Nivel Rookie:</strong> **"Moverse y Detenerse"**<br>
+                    <span style="color: red; font-weight: bold;">Instrucciones:</span><br>
+                    Configura el sensor ultrasónico en el Cutebot.<br>
+                    Programa el Cutebot para moverse hacia adelante de forma continua.<br>
+                    Usa el sensor ultrasónico para detectar si hay un obstáculo frente al Cutebot a una distancia menor de 15 cm.<br>
+                    Haz que el Cutebot se detenga completamente cuando detecte el obstáculo.<br><br>
+                    <span style="color: red; font-weight: bold;">Condiciones:</span><br>
+                    El Cutebot debe avanzar mientras no haya un obstáculo.<br>
+                    El sensor ultrasónico debe controlar la distancia en tiempo real y detener el Cutebot si la distancia es menor a 15 cm.<br><br>
+                    <span style="color: red; font-weight: bold;">Consejo:</span><br>
+                    Coloca diferentes objetos como obstáculos y prueba cómo el Cutebot responde.<br><br>
+
+                    <strong>Nivel Master:</strong> **"Movimiento con Precaución"**<br>
+                    <span style="color: red; font-weight: bold;">Instrucciones:</span><br>
+                    Configura el Cutebot para avanzar continuamente.<br>
+                    Usa el sensor ultrasónico para medir la distancia al obstáculo.<br>
+                    Programa los siguientes comportamientos:<br>
+                    - Si no hay obstáculos cercanos (distancia mayor a 20 cm), el Cutebot avanza rápido.<br>
+                    - Si un obstáculo está entre 10 y 20 cm, el Cutebot debe reducir su velocidad.<br>
+                    - Si un obstáculo está a menos de 10 cm, el Cutebot debe detenerse completamente.<br><br>
+                    <span style="color: red; font-weight: bold;">Condiciones:</span><br>
+                    El Cutebot debe ajustar su velocidad en tiempo real dependiendo de la distancia al obstáculo.<br>
+                    Asegúrate de que el Cutebot frene por completo cuando detecte un objeto muy cercano.<br><br>
+                    <span style="color: red; font-weight: bold;">Consejo:</span><br>
+                    Usa la función de velocidad ajustable del Cutebot para reducir gradualmente la velocidad.<br><br>
+
+                    <strong>Nivel Hacker:</strong> **"Explorador Autónomo Inteligente"**<br>
+                    <span style="color: red; font-weight: bold;">Instrucciones:</span><br>
+                    Configura el sensor ultrasónico para medir la distancia al obstáculo en tiempo real.<br>
+                    Programa el siguiente comportamiento para el Cutebot:<br>
+                    - Si no hay obstáculos cercanos (distancia mayor a 20 cm): El Cutebot avanza a velocidad máxima.<br>
+                    - Si un obstáculo está entre 10 y 20 cm: El Cutebot reduce su velocidad para avanzar con precaución.<br>
+                    - Si un obstáculo está a menos de 10 cm: El Cutebot se detiene completamente.<br>
+                    - Después de detenerse, el Cutebot debe girar a la izquierda o derecha (elige una dirección fija).<br>
+                    - Una vez que haya girado, el Cutebot debe reanudar su movimiento y repetir el proceso.<br><br>
+                    <span style="color: red; font-weight: bold;">Condiciones:</span><br>
+                    El Cutebot debe ajustar su velocidad en tiempo real según la distancia al obstáculo.<br>
+                    Si se detiene por un obstáculo, debe girar de manera suficiente para evitarlo y luego continuar moviéndose.<br><br>
+                    <span style="color: red; font-weight: bold;">Consejo:</span><br>
+                    Ajusta los tiempos de giro y los límites de distancia para optimizar el comportamiento del Cutebot.<br>
+                    Prueba el programa en un espacio con múltiples obstáculos para simular un entorno más realista.
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (20 minutos):</strong> Proyectar Diapositiva 23 ("Tiempo para Paper Programming").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Manos a la obra, Genios! Tienen 20 minutos para diseñar en sus Magic Boards las secuencias que resolverán los retos de cada nivel. Piensen en cada paso como si fueran instrucciones para el Cutebot: desde avanzar, medir distancias, ajustar velocidad o girar. ¡Hagan que sus secuencias sean precisas y claras para que podamos implementarlas más tarde!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 4 (1 minuto):</strong> Proyectar Diapositiva 24 ("Revisión del Challenge").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Gran trabajo, Genios! Vamos a revisar cómo les fue con sus diseños de Paper Programming. ¿Qué nivel les pareció más desafiante y por qué? ¿Qué aprendieron al diseñar los pasos para el Cutebot? ¿Alguna sugerencia para mejorar las soluciones? ¡Estoy muy orgulloso de su esfuerzo y creatividad!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+        <!-- Actividad 7 -->
+<div id="activity-7" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('easter_egg')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🥚 Actividad 7: Easter Egg ⏰ Tiempo: 4.5 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Sorpresa educativa con una pregunta especial sobre sensores ultrasónicos.</span>
+        </div>
+    </div>
+    <div id="easter_egg" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (0.5 minutos):</strong> Proyectar Diapositiva 25 ("¡Easter Egg!").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios, es momento de nuestro Easter Egg! Espero que hayan estado muy atentos porque esta sorpresa está relacionada con algo que vimos hoy. ¡Preparen su mente porque viene una pregunta especial!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (2 minutos):</strong> Proyectar Diapositiva 26 ("Pregunta del Easter Egg").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Aquí está la pregunta del Easter Egg: ¿En qué año se inventó el primer sensor ultrasónico y quién fue la persona detrás de este invento? Levanten la mano si saben la respuesta. Elegiré a algunos para que me respondan en privado y así mantengamos la emoción hasta el final."
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (1 minuto):</strong> Proyectar Diapositiva 27 ("Respuesta Correcta").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Felicidades a quienes respondieron correctamente! La respuesta es <strong>1917</strong>, y el inventor fue <strong>Léon Brillouin</strong>, quien sentó las bases para la detección ultrasónica que hoy usamos en tecnologías modernas. ¡Se han ganado sus Mon-e y todo mi reconocimiento por su atención y memoria!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 4 (1 minuto):</strong> Sin diapositiva.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Qué emoción! Recuerden, siempre habrá sorpresas como estas escondidas en nuestras clases. Así que sigan atentos, participando y dando lo mejor de ustedes. ¡Estoy muy orgulloso de su curiosidad y esfuerzo, Genios!"
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 8 -->
+<div id="activity-8" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('honor_lab')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🏅 Actividad 8: Honor the Lab ⏰ Tiempo: 4.5 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Reflexión final y organización del espacio de trabajo.</span>
+        </div>
+    </div>
+    <div id="honor_lab" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (0.5 minutos):</strong> Proyectar Diapositiva 28 ("Logros del Día").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios, qué increíble trabajo hicimos hoy! Reflexionemos sobre lo que logramos juntos: <br>
+                    <strong>1.</strong> Aprendimos cómo funciona el sensor ultrasónico.<br>
+                    <strong>2.</strong> Diseñamos soluciones creativas para retos desafiantes con Paper Programming.<br>
+                    <strong>3.</strong> ¡Superamos los retos Rookie, Master y Hacker!<br>
+                    ¡Estoy muy orgulloso del esfuerzo y trabajo en equipo que mostraron hoy!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (1 minuto):</strong> Sin diapositiva.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Quiero darles las gracias a cada uno de ustedes por su dedicación y entusiasmo. Hoy demostraron que el trabajo en equipo y la creatividad pueden llevarnos a lograr cosas increíbles. ¡Estoy muy orgulloso de ser su facilitador!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (3 minutos):</strong> Proyectar Diapositiva 29 ("Recoger Materiales").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Ahora es momento de honrar nuestro espacio de trabajo. Por favor, recojan los materiales que usaron, como las Magic Boards, y asegúrense de dejar todo en orden. Recuerden, un buen ingeniero siempre cuida su entorno."
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!-- Actividad 8 -->
+<div id="activity-8" class="activity" data-time="50">
+    <div class="banner" onclick="toggleContent('honor_lab')" style="display: flex; align-items: center; justify-content: space-between;">
+        <div style="flex-grow: 1;">
+            <span style="font-weight: bold; font-size: 1.1em;">🏅 Actividad 8: Honor the Lab ⏰ Tiempo: 4.5 minutos</span>
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 5px 0;">
+            <span style="font-size: 0.9em; color: #e0e0e0;">Reflexión final y organización del espacio de trabajo.</span>
+        </div>
+    </div>
+    <div id="honor_lab" class="content">
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ddd;">
+            <tr style="border-bottom: 1px solid #ddd; background-color: #f9f9f9;">
+                <th style="width: 50%; padding: 10px; text-align: left; border-right: 1px solid #ddd;">Acción</th>
+                <th style="width: 50%; padding: 10px; text-align: left;">Diálogo Sugerido</th>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 1 (0.5 minutos):</strong> Proyectar Diapositiva 28 ("Logros del Día").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "¡Genios, qué increíble trabajo hicimos hoy! Reflexionemos sobre lo que logramos juntos: <br>
+                    <strong>1.</strong> Aprendimos cómo funciona el sensor ultrasónico.<br>
+                    <strong>2.</strong> Diseñamos soluciones creativas para retos desafiantes con Paper Programming.<br>
+                    <strong>3.</strong> ¡Superamos los retos Rookie, Master y Hacker!<br>
+                    ¡Estoy muy orgulloso del esfuerzo y trabajo en equipo que mostraron hoy!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 2 (1 minuto):</strong> Sin diapositiva.
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Quiero darles las gracias a cada uno de ustedes por su dedicación y entusiasmo. Hoy demostraron que el trabajo en equipo y la creatividad pueden llevarnos a lograr cosas increíbles. ¡Estoy muy orgulloso de ser su facilitador!"
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 10px; border-right: 1px solid #ddd; vertical-align: top;">
+                    <strong>Paso 3 (3 minutos):</strong> Proyectar Diapositiva 29 ("Recoger Materiales").
+                </td>
+                <td style="padding: 10px; vertical-align: top;">
+                    "Ahora es momento de honrar nuestro espacio de trabajo. Por favor, recojan los materiales que usaron, como las Magic Boards, y asegúrense de dejar todo en orden. Recuerden, un buen ingeniero siempre cuida su entorno."
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+    </div>
+</body>
+</html>
